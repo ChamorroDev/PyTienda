@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'TiendaMusical.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -86,7 +86,18 @@ DATABASES = {
     }
 }
 
+"""
 
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.oracle",
+        "NAME": "xe",
+        "USER": "c##Chamorro",
+        "PASSWORD": "1234",
+        "HOST": "localhost",
+        "PORT": "1521",
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -123,12 +134,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    "/var/www/static/",
-]
 
-MEDIA_URL = '/media/'
+
+MEDIA_URL = 'media/'
 MEDIA_ROOT = join(BASE_DIR / 'media')
 
 # Default primary key field type

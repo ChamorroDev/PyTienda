@@ -18,7 +18,7 @@
 
           </li>
           <li class="nav-item">
-            {% if  request.get_full_path  == '/tienda/' %}
+            {% if  request.get_full_path  == '/tienda/' or '/tienda/formato/1/' == request.get_full_path or  '/tienda/formato/2/' == request.get_full_path or '/tienda/formato/3/' == request.get_full_path or  '/tienda/formato/4/' == request.get_full_path %}
             
             <a class="nav-link active" aria-current="page"  href="{% url 'Tienda' %}">Tienda</a>
             {% else %}
