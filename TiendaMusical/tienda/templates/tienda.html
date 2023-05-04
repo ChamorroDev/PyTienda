@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block contenido %}
+<link href="{% static '/css/style.css' %}" rel="stylesheet" type="text/css">
+<div class="container">
+    <div style="float: right; ;">
+
+
+
+        <div class="alert alert-danger text-center " style="margin:5px; ">
+            Carrito
+            Debes Iniciar Sesion 
+        </div> 
+        <div style="float: right; ;" >
+
+            <div class="d-flex flex-column">
+                <h2 class="text-center">Formatos</h2>
+                <button type="button" class="btn  btn-outline-dark text-center">
+                <a href="{% url 'formato' 1 %}" class="nav-link">Vinillos </a>
+                </button>
+
+                <button type="button" class="btn btn-outline-dark text-center">
+                <a href="{% url 'formato' 2  %}" class="nav-link">Vinillos usados</a>
+                </button>
+                
+                <button type="button" class="btn btn-outline-dark text-center">
+                <a href="{% url 'formato' 3  %}" class="nav-link">CD </a>
+                </button>
+
+                <button type="button" class="btn btn-outline-dark text-center"> 
+                    <a href="{% url 'formato' 4  %}" class="nav-link">Cassette</a>
+                </button>
+
+                <button type="button" class="btn btn-outline-dark text-center"> 
+                    <a href="{% url 'Tienda'  %}" class="nav-link">Limpiar filtros</a>
+                </button>
+            </div>
+        </div>  
+     
+    </div>
+    <div class="row">
+
+    {% for disco in discos %}
+        {% if disco.imagen %}
+        <div class="col-md-2">
+            <div class="card bg-secondary" style="width: 100%; margin: 5px 5px; height:300px;">
+                <div class="card-body" style="text-align: center;">
+                    <h5 class="card-title" style="height: 40%;">{{disco.nombre}}</h5>
+                   
+                    <img src="{{disco.imagen.url}}" class="rounded" width="100" height="100" alt="">
+
+                    <p class="card-text">$&nbsp;{{disco.precio}}</p>
+                    
+                </div>
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-success">Agregar</a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+
+
+
+
+
+
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}
