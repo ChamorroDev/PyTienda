@@ -16,24 +16,28 @@
         </div> 
         <div style="float: right; ;" >
 
-            
-            <h2 class="text-center">Formatos</h2>
-            <button type="button" class="btn btn-outline-info text-center">
-            <a href="{% url 'formato' 1 %}" class="linksCategorias">Vinillos </a>
-            </button>
+            <div class="d-flex flex-column">
+                <h2 class="text-center">Formatos</h2>
+                <button type="button" class="btn  btn-outline-dark text-center">
+                <a href="{% url 'formato' 1 %}" class="nav-link">Vinillos </a>
+                </button>
 
-            <button type="button" class="btn btn-outline-info text-center">
-            <a href="{% url 'formato' 2  %}" class="linksCategorias">Vinillos usados</a>
-            </button>
-            
-            <button type="button" class="btn btn-outline-info text-center">
-            <a href="{% url 'formato' 3  %}" class="linksCategorias">CD </a>
-            </button>
+                <button type="button" class="btn btn-outline-dark text-center">
+                <a href="{% url 'formato' 2  %}" class="nav-link">Vinillos usados</a>
+                </button>
+                
+                <button type="button" class="btn btn-outline-dark text-center">
+                <a href="{% url 'formato' 3  %}" class="nav-link">CD </a>
+                </button>
 
-            <button type="button" class="btn btn-outline-info text-center"> 
-                <a href="{% url 'formato' 4  %}" class="linksCategorias">Cassette</a>
-            </button>
+                <button type="button" class="btn btn-outline-dark text-center"> 
+                    <a href="{% url 'formato' 4  %}" class="nav-link">Cassette</a>
+                </button>
 
+                <button type="button" class="btn btn-outline-dark text-center"> 
+                    <a href="{% url 'Tienda'  %}" class="nav-link">Limpiar filtros</a>
+                </button>
+            </div>
         </div>  
      
     </div>
