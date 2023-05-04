@@ -1,0 +1,65 @@
+
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block titulo %}
+Tienda 
+{% endblock titulo %}
+
+{% block styles %}
+ 
+<link href="{% static 'tienda/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock styles %}
+
+{% block contenido %}
+<div class="container">
+ 
+    <div class="row">
+        <div class="d-flex justify-content-end">  
+            <button class="btn btn-success crearbtn  ">Crear disco</button>
+        </div>
+        
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre de disco</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                    <th>Oferta</th>
+                    <th>Acciones</th>
+
+                </tr>
+            </thead>
+    {% for disco in discos %}
+        <tbody>
+            <tr>
+                <td>{{ disco.id }}</td>
+                <td>{{ disco.nombre }}</td>
+                <td>{{ disco.precio }}</td>
+                {% if disco.imagen %}
+                <td>Si</td>
+                {% else %}
+                <td>No</td>
+                {% endif %}
+                {% if disco.oferta %}
+                <td>Si</td>
+                {% else %}
+                <td>No</td>
+                {% endif %}
+                <td>
+                    <button>Editar</button>                   
+                    <button>Eliminar</button>
+                </td>
+
+            </tr>
+
+        </tbody>
+        
+        {% endfor %}
+    </table>
+    </div>
+</div>
+{% endblock %}

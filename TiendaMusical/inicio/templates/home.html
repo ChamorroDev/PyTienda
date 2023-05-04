@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
+
+{% load static %}
+
+
 {% block titulo %}
-Bienvenido 
+Inicio 
 {% endblock titulo %}
+
+{% block styles %}
+ 
+<link href="{% static '/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock styles %}
+
 {% block contenido %}
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">

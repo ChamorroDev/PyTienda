@@ -3,8 +3,16 @@
 
 {% load static %}
 
+{% block titulo %}
+Tienda 
+{% endblock titulo %}
+
+{% block styles %}
+ 
+<link href="{% static 'tienda/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock styles %}
+
 {% block contenido %}
-<link href="{% static '/css/style.css' %}" rel="stylesheet" type="text/css">
 <div class="container">
     <div style="float: right; ;">
 
@@ -16,25 +24,25 @@
         </div> 
         <div style="float: right; ;" >
 
-            <div class="d-flex flex-column">
-                <h2 class="text-center">Formatos</h2>
-                <button type="button" class="btn  btn-outline-dark text-center">
+            <p class="text-center formatos">Formatos</p>
+            <div class="d-flex flex-column   align-items-center ">
+                <button type="button" class="btn  btn-outline-dark text-center bg-white">
                 <a href="{% url 'formato' 1 %}" class="nav-link">Vinillos </a>
                 </button>
 
-                <button type="button" class="btn btn-outline-dark text-center">
+                <button type="button" class="btn btn-outline-dark text-center bg-white">
                 <a href="{% url 'formato' 2  %}" class="nav-link">Vinillos usados</a>
                 </button>
                 
-                <button type="button" class="btn btn-outline-dark text-center">
+                <button type="button" class="btn btn-outline-dark text-center bg-white">
                 <a href="{% url 'formato' 3  %}" class="nav-link">CD </a>
                 </button>
 
-                <button type="button" class="btn btn-outline-dark text-center"> 
+                <button type="button" class="btn btn-outline-dark text-center bg-white"> 
                     <a href="{% url 'formato' 4  %}" class="nav-link">Cassette</a>
                 </button>
 
-                <button type="button" class="btn btn-outline-dark text-center"> 
+                <button type="button" class="btn btn-outline-dark text-center bg-white"> 
                     <a href="{% url 'Tienda'  %}" class="nav-link">Limpiar filtros</a>
                 </button>
             </div>
@@ -44,13 +52,14 @@
     <div class="row">
 
     {% for disco in discos %}
-        {% if disco.imagen %}
-        <div class="col-md-2">
-            <div class="card bg-secondary" style="width: 100%; margin: 5px 5px; height:300px;">
-                <div class="card-body" style="text-align: center;">
-                    <h5 class="card-title" style="height: 40%;">{{disco.nombre}}</h5>
-                   
+    <div class="col-md-2">
+        <div class="card bg-secondary" style="width: 100%; margin: 5px 5px; height:300px;">
+            <div class="card-body" style="text-align: center;">
+                <h5 class="card-title" style="height: 40%;">{{disco.nombre}}</h5>
+                
+                    {% if disco.imagen %}
                     <img src="{{disco.imagen.url}}" class="rounded" width="100" height="100" alt="">
+                    {% endif %}
 
                     <p class="card-text">$&nbsp;{{disco.precio}}</p>
                     
@@ -60,7 +69,6 @@
                 </div>
             </div>
         </div>
-        {% endif %}
 
 
 
