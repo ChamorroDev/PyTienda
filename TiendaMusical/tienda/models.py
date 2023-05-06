@@ -16,7 +16,10 @@ class FormatoDisco(models.Model):
 class Disco(models.Model):
     nombre=models.CharField(max_length=50)
     nombreAlbum=models.CharField(max_length=50)
+    artista=models.CharField(max_length=50,null=True)
     precio=models.FloatField()
+    vendidos=models.IntegerField(default=0)
+    stock=models.IntegerField(default=1)
     annopublicacion=models.DateField()
     imagen=models.ImageField(upload_to='imgDiscos', null=True,blank=True)
     formatos=models.ForeignKey(FormatoDisco, on_delete=models.CASCADE)

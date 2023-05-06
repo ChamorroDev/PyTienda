@@ -37,3 +37,8 @@ def productosAdmin(request):
     all_discos=Disco.objects.all()   
 
     return render(request,"productos.html",{"discos":all_discos})
+
+def Crearproducto(request):
+  
+
+    return render(request,"CrearProducto.html")

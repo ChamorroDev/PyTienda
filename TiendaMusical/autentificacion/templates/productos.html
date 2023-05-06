@@ -18,7 +18,9 @@ Tienda
  
     <div class="row">
         <div class="d-flex justify-content-end">  
-            <button class="btn btn-success crearbtn  ">Crear disco</button>
+            <button class="btn btn-success crearbtn my-2"  > 
+                <a href="{% url 'Crearproducto' %}"class="nav-link ">Crear</a>
+            </button>
         </div>
         
         <table class="table table-responsive">
@@ -50,8 +52,17 @@ Tienda
                 <td>No</td>
                 {% endif %}
                 <td>
-                    <button>Editar</button>                   
-                    <button>Eliminar</button>
+                    <A HREF="{% url 'Crearproducto' %}">
+                        <img src="{% static 'tienda/img/editimg.png' %}"
+                        width ="25px"
+                        height ="25px"
+                        alt=""> </a>  
+
+                    <A HREF="{% url 'Crearproducto' %}">
+                        <img src="{% static 'tienda/img/deleteimg.png' %}"
+                        width ="25px"
+                        height ="25px"
+                        alt=""> </a>
                 </td>
 
             </tr>
