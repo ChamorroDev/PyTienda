@@ -14,229 +14,111 @@ Tienda
 {% endblock styles %}
 
 {% block contenido %}
-<div class="container">
-            <div id="content" class="colM">
-                
-                <h1>Añadir Disco</h1>
-                
-                <div id="content-main">
 
-
-
-        <form enctype="multipart/form-data" method="post" id="disco_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="Fl2DMDoF94Q1rwhaSuggdQn7Ye0VdwVfNKj6mF35eaGtdaZI8lCgv3HXhJ7Qr6PA">
-        <div>
-
-
-
-
-
-
-
-        <fieldset class="module aligned ">
-        
-        
-        
-            <div class="form-row field-nombre">
-                
-                
-                    <div>
-                        
-                            <div class="flex-container">
-                                
-                                    <label class="required" for="id_nombre">Nombre:</label>
-                                    
-                                        <input type="text" name="nombre" class="vTextField" maxlength="50" required="" id="id_nombre">
-                                    
-                                
+<div id="content" class="colM">
+        <h1>Añadir Disco</h1>
+        <div id="content-main">
+            <form action="/registro/crearDisco/" method="post" enctype="multipart/form-data"  id="disco_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="9eUvHrVCp3bBqLOy7V7AGlZuyuJ0mg7TSrZesIZ96Bda5INx7C2w6UUgqyBBCARl">{% csrf_token %}
+                <div>
+                    <fieldset class="module aligned ">
+                        <div class="form-row field-nombre">
+                            <div>
+                                <div class="flex-container"> <label class="required" for="id_nombre">Nombre:</label> <input type="text" name="nombre" class="vTextField" maxlength="50" required="" id="id_nombre"> </div>
                             </div>
-                        
-                    </div>
-                
-                
-            </div>
-        
-            <div class="form-row field-nombreAlbum">
-                
-                
-                    <div>
-                        
-                            <div class="flex-container">
-                                
-                                    <label class="required" for="id_nombreAlbum">NombreAlbum:</label>
-                                    
-                                        <input type="text" name="nombreAlbum" class="vTextField" maxlength="50" required="" id="id_nombreAlbum">
-                                    
-                                
+                        </div>
+                        <div class="form-row field-nombreAlbum">
+                            <div>
+                                <div class="flex-container"> <label class="required" for="id_nombreAlbum">NombreAlbum:</label> <input type="text" name="nombreAlbum" class="vTextField" maxlength="50" required="" id="id_nombreAlbum"> </div>
                             </div>
-                        
-                    </div>
-                
-                
-            </div>
-        
-            <div class="form-row field-precio">
-                
-                
-                    <div>
-                        
-                            <div class="flex-container">
-                                
-                                    <label class="required" for="id_precio">Precio:</label>
-                                    
-                                        <input type="number" name="precio" step="any" required="" id="id_precio">
-                                    
-                                
+                        </div>
+                        <div class="form-row field-artista">
+                            <div>
+                                <div class="flex-container"> <label class="required" for="id_artista">Artista:</label> <input type="text" name="artista" class="vTextField" maxlength="50" required="" id="id_artista"> </div>
                             </div>
-                        
-                    </div>
-                
-                
-            </div>
-        
-            <div class="form-row field-annopublicacion">
-                
-                
-                    <div>
-                        
-                            <div class="flex-container">
-                                
-                                    <label class="required" for="id_annopublicacion">Annopublicacion:</label>
-                                    
-                                        <input type="text" name="annopublicacion" class="vDateField" size="10" required="" id="id_annopublicacion"><span class="datetimeshortcuts">&nbsp;<a href="#">Hoy</a>&nbsp;|&nbsp;<a href="#" id="calendarlink0"><span class="date-icon" title="Elija una Fecha"></span></a></span>
-                                    
-                                
+                        </div>
+                        <div class="form-row field-precio">
+                            <div>
+                                <div class="flex-container"> <label class="required" for="id_precio">Precio:</label> <input type="number" name="precio" class="vIntegerField" required="" id="id_precio"> </div>
                             </div>
-                        
-                    </div>
-                
-                
-            </div>
-        
-            <div class="form-row field-imagen">
-                
-                
-                    <div>
-                        
-                            <div class="flex-container">
-                                
-                                    <label for="id_imagen">Imagen:</label>
-                                    
-                                        <input type="file" name="imagen" accept="image/*" id="id_imagen">
-                                    
-                                
+                        </div>
+                        <div class="form-row field-vendidos">
+                            <div>
+                                <div class="flex-container"> <label class="required" for="id_vendidos">Vendidos:</label> <input type="number" name="vendidos" value="0" class="vIntegerField" required="" id="id_vendidos"> </div>
                             </div>
-                        
-                    </div>
-                
-                
-            </div>
-        
-            <div class="form-row field-formatos">
-                    <div>
+                        </div>
+                        <div class="form-row field-stock">
+                            <div>
+                                <div class="flex-container"> <label class="required" for="id_stock">Stock:</label> <input type="number" name="stock" value="1" class="vIntegerField" required="" id="id_stock"> </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-annopublicacion">
+                            <div>
+                                <div class="flex-container"> <label class="required" for="id_annopublicacion">Annopublicacion:</label> <input type="text" name="annopublicacion" class="vDateField" size="10" required="" id="id_annopublicacion"><span class="datetimeshortcuts">&nbsp;<a href="#">Hoy</a>&nbsp;|&nbsp;<a href="#" id="calendarlink0"><span class="date-icon" title="Elija una Fecha"></span></a>
+                                    </span>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-imagen">
+                            <div>
+                                <div class="flex-container"> <label for="id_imagen">Imagen:</label> <input type="file" name="imagen" accept="image/*" id="id_imagen"> </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-formatos">
+                            <div>
+                                <div class="flex-container"> <label class="required" for="id_formatos">Formatos:</label>
+                                    <div class="related-widget-wrapper" data-model-ref="FormatoDisco"> <select name="formatos" required="" id="id_formatos">
+      <option value="" selected="">---------</option>
     
-                            <div class="flex-container">
-                                
-                                    <label class="required" for="id_formatos">Formatos:</label>
-                                    
-                                        <div class="related-widget-wrapper" data-model-ref="FormatoDisco">
-        <select name="formatos" required="" id="id_formatos">
-        <option value="" selected="">---------</option>
-
-        <option value="1">Vinillos</option>
-
-        <option value="2">CD</option>
-
-        <option value="3">Cassette</option>
-
-        <option value="4">Vinillos usados</option>
-
-        </select>
-        
-            <a class="related-widget-wrapper-link change-related" id="change_id_formatos" data-href-template="/admin/tienda/formatodisco/__fk__/change/?_to_field=id&amp;_popup=1" data-popup="yes" title="Cambiar FormatoDisco seleccionados"><img src="/static/admin/img/icon-changelink.svg" alt="Modificar"></a><a class="related-widget-wrapper-link add-related" id="add_id_formatos" data-popup="yes" href="/admin/tienda/formatodisco/add/?_to_field=id&amp;_popup=1" title="Añadir otro FormatoDisco"><img src="/static/admin/img/icon-addlink.svg" alt="Añadir"></a><a class="related-widget-wrapper-link view-related" id="view_id_formatos" data-href-template="/admin/tienda/formatodisco/__fk__/change/?_to_field=id" title="Ver seleccionado FormatoDisco"><img src="/static/admin/img/icon-viewlink.svg" alt="Vista"></a>
-        
-        </div>
-                     
-                                
+      <option value="1">Cassette</option>
+    
+      <option value="2">CD</option>
+    
+      <option value="3">Vinillos usados</option>
+    
+      <option value="4">Vinillos</option>
+    
+    </select>
+                                        <a class="related-widget-wrapper-link change-related" id="change_id_formatos" data-href-template="/admin/tienda/formatodisco/__fk__/change/?_to_field=id&amp;_popup=1" data-popup="yes" title="Cambiar FormatoDisco seleccionados"><img src="/static/admin/img/icon-changelink.svg" alt="Modificar"></a>
+                                        <a class="related-widget-wrapper-link add-related" id="add_id_formatos" data-popup="yes" href="/admin/tienda/formatodisco/add/?_to_field=id&amp;_popup=1"
+                                            title="Añadir otro FormatoDisco"><img src="/static/admin/img/icon-addlink.svg" alt="Añadir"></a>
+                                        <a class="related-widget-wrapper-link view-related" id="view_id_formatos" data-href-template="/admin/tienda/formatodisco/__fk__/change/?_to_field=id"
+                                            title="Ver seleccionado FormatoDisco"><img src="/static/admin/img/icon-viewlink.svg" alt="Vista"></a>
+                                    </div>
+                                </div>
                             </div>
-                        
-                    </div>
-
-            </div>
-        
-            <div class="form-row field-oferta">
-
-                    <div>
-                        
-                            <div class="flex-container checkbox-row">
-                                
-                                    <input type="checkbox" name="oferta" id="id_oferta" checked=""><label class="vCheckboxLabel" for="id_oferta">Oferta</label>
-                                
+                        </div>
+                        <div class="form-row field-oferta">
+                            <div>
+                                <div class="flex-container checkbox-row"> <input type="checkbox" name="oferta" id="id_oferta" checked=""><label class="vCheckboxLabel" for="id_oferta">Oferta</label> </div>
                             </div>
-                        
-                    </div>
-
-            </div>
-        
-            <div class="form-row field-created">
-                                    <div>
-                        
-                            <div class="flex-container">
-                                
-                                    <label>Created:</label>
-                                    
-                                        <div class="readonly">-</div>
-                                    
-                                
+                        </div>
+                        <div class="form-row field-created">
+                            <div>
+                                <div class="flex-container"> <label>Created:</label>
+                                    <div class="readonly">-</div>
+                                </div>
                             </div>
-                        
-                    </div>
-                
-            </div>
-        
-            <div class="form-row field-updated">
-
-                    <div>
-                        
-                            <div class="flex-container">
-                                
-                                    <label>Updated:</label>
-                                    
-                                        <div class="readonly">-</div>
-                                    
-                                
+                        </div>
+                        <div class="form-row field-updated">
+                            <div>
+                                <div class="flex-container"> <label>Updated:</label>
+                                    <div class="readonly">-</div>
+                                </div>
                             </div>
+                        </div>
+                    </fieldset>
+                    <div class="submit-row"> <input type="submit" value="Guardar"   type="submit" value="Guardar y añadir otro" name="_addanother"> <input type="submit" value="Guardar y continuar editando"
+                            name="_continue"> </div>
+                    <script id="django-admin-form-add-constants" src="/static/admin/js/change_form.js" data-model-name="disco" async="">
                         
-                    </div>
-                
-                
-            </div>
-        
-        </fieldset>
-
-        <div class="submit-row">
-            <button class="btn btn-success crearbtn" > 
-                <a href="{% url 'productosAdmin' %}"class="nav-link">Guardar</a>
-            </button>
-            <button class="btn btn-danger crearbtn" > 
-                <a href="{% url 'productosAdmin' %}"class="nav-link">Cancelar</a>
-            </button>
-
-        </div>
-
-        <script id="django-admin-form-add-constants" src="/static/admin/js/change_form.js" data-model-name="disco" async="">
-        </script>
-
-        <script id="django-admin-prepopulated-fields-constants" src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]">
-        </script>
-
-        </div>
-        </form></div>
-
-                
-                <br class="clear">
-            </div>
+                    </script>
+                    <script id="django-admin-prepopulated-fields-constants" src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]">
+                        
+                    </script>
+                </div>
+            </form>
+        </div> <br class="clear"> </div>
 
 
-
-</div>
 {% endblock %}

@@ -18,8 +18,8 @@ Tienda
  
     <div class="row">
         <div class="d-flex justify-content-end">  
-            <button class="btn btn-success crearbtn my-2"  > 
-                <a href="{% url 'Crearproducto' %}"class="nav-link ">Crear</a>
+            <button class="btn btn-success crearbtn my-2 "  > 
+                <a href="{% url 'Crearproducto' %}"class="nav-link f-30 ">CREAR</a>
             </button>
         </div>
         
@@ -52,16 +52,16 @@ Tienda
                 <td>No</td>
                 {% endif %}
                 <td>
-                    <A HREF="{% url 'Crearproducto' %}">
+                    <A class = " text-decoration-none"HREF="{% url 'Crearproducto' %}">
                         <img src="{% static 'tienda/img/editimg.png' %}"
-                        width ="25px"
-                        height ="25px"
+                        width ="40px"
+                        height ="40px"
                         alt=""> </a>  
-
-                    <A HREF="{% url 'Crearproducto' %}">
+                        
+                    <A HREF="{% url 'eliminarProducto' disco.id  %}">
                         <img src="{% static 'tienda/img/deleteimg.png' %}"
-                        width ="25px"
-                        height ="25px"
+                        width ="40px"
+                        height ="40px"
                         alt=""> </a>
                 </td>
 

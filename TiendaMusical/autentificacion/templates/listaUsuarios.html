@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block titulo %}
+Login 
+{% endblock titulo %}
+
+{% block styles %}
+<link href="{% static 'auth/css/style.css' %}" rel="stylesheet" type="text/css">
+
+{% endblock styles %}
+
+
+{% block contenido %}
+
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre de usuario</th>
+            <th>Correo Electronico</th>   
+            <th>Acciones</th>   
+
+          
+
+        </tr>
+    </thead>
+{% for disco in users %}
+<tbody>
+    <tr>
+        <td>{{ disco.id }}</td> 
+        <td>{{ disco }}</td> 
+        <td>{{ disco.email }}</td> 
+
+        
+        <td>
+            <A class = " text-decoration-none"HREF="{% url 'Crearproducto' %}">
+                <img src="{% static 'tienda/img/editimg.png' %}"
+                width ="40px"
+                height ="40px"
+                alt=""> </a>  
+                
+            <A HREF="{% url 'eliminarUsuario' disco.id  %}">
+                <img src="{% static 'tienda/img/deleteimg.png' %}"
+                width ="40px"
+                height ="40px"
+                alt=""> </a>
+        </td>
+
+    </tr>
+
+</tbody>
+
+{% endfor %}
+</table>
+            
+{% endblock contenido %}

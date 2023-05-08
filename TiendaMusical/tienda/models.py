@@ -17,7 +17,7 @@ class Disco(models.Model):
     nombre=models.CharField(max_length=50)
     nombreAlbum=models.CharField(max_length=50)
     artista=models.CharField(max_length=50,null=True)
-    precio=models.FloatField()
+    precio=models.IntegerField()
     vendidos=models.IntegerField(default=0)
     stock=models.IntegerField(default=1)
     annopublicacion=models.DateField()

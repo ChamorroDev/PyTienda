@@ -24,9 +24,9 @@ Registrarse
   
           <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
   
-            <form style="width: 23rem;">
-  
-              <h3 class="fw-normal mb-3 pb-3 letranegra" style="letter-spacing: 1px;">Log in</h3>
+            <form action="/registro/" method="POST" style="width: 23rem;">
+              {% csrf_token %}
+              <h3 class="fw-normal mb-3 pb-3 letranegra" style="letter-spacing: 1px;">Registrarse</h3>
 
               <div class="form-outline mb-4">
                 <input type="username" id="form2Example18" class="form-control form-control-lg" />
@@ -46,13 +46,13 @@ Registrarse
               </div>
   
               <div class="pt-1 mb-4">
-                <button class="btn btn-info btn-lg btn-block" type="button">Login</button>
+                <button class="btn btn-info btn-lg btn-block" type="submit">Registrarse</button>
               </div>
   
+            </form>
              
               <p>Ya tienes una cuenta? <a href="{% url 'Login' %}" class="link-info">Inicia sesion aqui</a></p>
   
-            </form>
   
           </div>
   
@@ -65,4 +65,25 @@ Registrarse
     </div>
   </section>
 
+  {% if messages %}  
+  <ul>   
+      {% for message in messages %}  
+          <li>{{ message }}</li>  
+          {% endfor %}  
+  </ul>   
+{% endif %}  
+  <form method="POST" action="/registro/">  
+    {% csrf_token %}  
+    <table>  
+       {{ form.as_table }}  
+        <tr>  
+           <td></td>  
+           <td><input type="submit" name="submit" value="Register" /></td>  
+       </tr>  
+    </table>  
+</form>  
+</div>  
+
 {% endblock contenido %}
+
+
