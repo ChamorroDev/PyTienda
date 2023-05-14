@@ -8,6 +8,11 @@ from datetime import datetime
 
 ## PRODUCTOS
 
+def buscar_discos(request):
+    query = request.GET.get('query')
+    discos = Disco.objects.filter(nombre__icontains=query)
+    return render(request, 'productos.html', {'discos': discos})
+
 @login_required(redirect_field_name='login_required',login_url='Home')
 def productosAdmin(request):
     for grupo in request.user.groups.all():
@@ -68,6 +73,7 @@ def eliminarProducto(request,disco_id):
 
 @login_required(login_url='Home')
 def CrearDisco(request):
+    ## request.user.groups.filter(name='admins').exists()
     for grupo in request.user.groups.all():
         if grupo.name == 'admins':
             nnombre=request.POST['nombre']
@@ -107,4 +113,18 @@ def eliminarUsuario(request,disco_id):
             disc.delete()
             return redirect('ListaUsuarios')
     return redirect('Home')
+
+@login_required(login_url='Home')
+def editarUsuario(request,userss):
+    for grupo in request.user.groups.all():
+        if grupo.name == 'admins':
+            if request.method == 'POST':
+                mail = request.POST.get('mail') 
+                nombre = request.POST.get('nombre')
+                User.objects.filter(id=userss).update(username=nombre,email=mail)
  
+                return redirect('ListaUsuarios')
+            elif request.method == 'GET':
+                user = User.objects.filter(id=userss).values().first()
+                return render(request, 'editarUsuario.html', {"user": user})         
+    return redirect('Home')

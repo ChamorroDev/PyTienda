@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  <head>
+  {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
+    <link rel="icon" type="image/x-icon" href="{% static 'inicio/img/favicon.ico' %}">
+    <!-- Our project just needs Font Awesome Free's Solid and Brand files -->
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+
     <title>
       {% block titulo %}
       Inicio
@@ -18,27 +24,33 @@
     </head>
 
 <body class="bg-secondary">
-    <div class="">
-
+    
     <header class="container bg-dark rounded-bottom">
         {% include 'navbar.html' %}
-      </header>
+    </header>
+
+    {% if messages %}
+    <ul class="messages container ">
+        {% for message in messages %}
+            <li{% if message.tags %} class="alert alert-{{ message.tags }}" style="list-style: none;" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <main class="container bg-light rounded ">
       
-      <div class="container bg-light rounded h-100">
-        {% block contenido %}
+      {% block contenido %}
 
-        {% endblock contenido %}
+      {% endblock contenido %}
 
-        {% block ofertas %}
+      {% block ofertas %}
 
-        {% endblock ofertas %}
+      {% endblock ofertas %}
+    </main>
 
-
-      </div>
-    </div>  
+    <footer class="container bg-dark rounded-top mt-3">
 
       {% include 'footer.html' %}
-
+    </footer>
   
 </body>
 

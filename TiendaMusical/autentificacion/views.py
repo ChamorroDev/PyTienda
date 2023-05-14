@@ -22,9 +22,9 @@ def registro(request):
             user=form.save()  
             my_group = Group.objects.get(name='normal')
             my_group.user_set.add(user) 
-            messages.success(request, 'Account created successfully')  
+            messages.add_message(request=request,level=messages.SUCCESS,message="Registrado Correctamente")
             return redirect ('Home')
-        
+        messages.add_message(request=request,level=messages.WARNING,message="Registro invalido")    
     return redirect ('')  
 
 
@@ -39,11 +39,14 @@ def logear(request):
             user=authenticate(username=nombre_usuario,password=contra)
             if user is not None:
                 login(request,user)
+                messages.add_message(request=request,level=messages.SUCCESS,message="Ingreso Correctamente")
+
                 return redirect("Home")
             else:
-                messages.error(request,"Usuario no valido")
+                messages.add_message(request=request,level=messages.WARNING,message="Usuario no valido")
         else:
-            messages.error(request,"Informacion incorrecta")
+            messages.add_message(request=request,level=messages.WARNING,message="Informacion Incorrecta")
+            ##messages.error(request,"Informacion incorrecta")
     else:
         form=AuthenticationForm()
         return render(request,"login.html",{"form":form})

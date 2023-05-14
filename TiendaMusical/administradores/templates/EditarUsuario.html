@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block titulo %}
+Editar Usuario
+{% endblock titulo %}
+
+{% block styles %}
+
+<link href="{% static 'administradores/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock styles %}
+
+{% block contenido %}
+
+
+<div id="content-main " class="my-3">
+    <h1>Editar Usuario</h1>
+    <form action="/administradores/editarUsuario/{{  user.id }}/"  enctype="multipart/form-data" method="POST" id="disco_form" novalidate="">
+        {% csrf_token %}
+            <div class="form-row field-nombre my-2">
+                <div>
+                    <div class="flex-container"> 
+                        <label class="" >ID usuario:</label> 
+                        <label class="" >{{  user.id }}</label>  
+                    </div>
+                </div>
+            </div>
+            <div class="form-row field-nombre my-2">
+                <div>
+                    <div class="flex-container"> 
+                        <label class="required" for="id_nombre_user">Nombre:
+                        </label> 
+                        <input type="text" name="nombreUser" class="vTextField" value="{{ user.username }}" maxlength="50" required="" id="id_nombre_user"> 
+                        <span id="nombreUserError" class="error-message"></span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row field-mail my-2">
+                <div>
+                    <div class="flex-container"> 
+                        <label class="required" for="id_mail">Email:
+                        </label> 
+                        <input type="text" name="mail" class="vTextField"value="{{ user.email }}" maxlength="50" required="" id="id_mail"> 
+                        <span id="mailError" class="error-message"></span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit-row my-2"> 
+                <a href="{% url 'productosAdmin' %}" class="btn btn-danger">Cancelar</a>
+                <button  type="submit" value="Guardar" class="default btn btn-success" >Guardar</button>
+                
+            </div>
+
+    </form>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+
+<script src="{% static 'administradores/js/main.js' %}" ></script>
+
+
+
+
+{% endblock js %}

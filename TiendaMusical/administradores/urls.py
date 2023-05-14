@@ -15,6 +15,9 @@ urlpatterns = [
     path('ListaUsuarios/', ListaUsuarios, name="ListaUsuarios"),
     path('eliminarUsuario/<str:disco_id>/', eliminarUsuario, name="eliminarUsuario"),
     path('editar_producto/<str:disco_id>/', editar_producto, name="editar_producto"),
+    path('buscar-discos/', buscar_discos, name='buscar_discos'),
+    path('editarUsuario/<str:userss>/', editarUsuario, name="editarUsuario"),
+
 
   
   

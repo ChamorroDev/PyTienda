@@ -28,25 +28,25 @@ Login
 
         </tr>
     </thead>
-{% for user in users %}
+{% for userss in users %}
 <tbody>
     <tr>
-        <td>{{ user.id }}</td> 
-        <td>{{ user }}</td> 
-        <td>{{ user.email }}</td> 
+        <td>{{ userss.id }}</td> 
+        <td>{{ userss }}</td> 
+        <td>{{ userss.email }}</td> 
 
         
         <td>
-            <A class = " text-decoration-none"HREF="{% url 'Crearproducto' %}">
+            <A class = " text-decoration-none"HREF="{% url 'editarUsuario' userss.id %}">
                 <img src="{% static 'tienda/img/editimg.png' %}"
                 width ="40px"
                 height ="40px"
                 alt=""> </a>  
 
-            <a type="button" class="text-decoration-none delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}{{ user }}">
+            <a type="button" class="text-decoration-none delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal{{ userss.id }}{{ userss }}">
                 <img src="{% static 'tienda/img/deleteimg.png' %}" width="40px" height="40px" alt="">
             </a>
-            <div class="modal fade" id="exampleModal{{ user.id }}{{ user }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal{{ userss.id }}{{ userss }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -54,11 +54,11 @@ Login
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    Se seguro de borrar {{ user }}
+                    Se seguro de borrar {{ userss }}
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <a href="{% url 'eliminarUsuario' user.id %}" class="btn btn-danger">Eliminar</a>
+                    <a href="{% url 'eliminarUsuario' userss.id %}" class="btn btn-danger">Eliminar</a>
                     </div>
                 </div>
                 </div>

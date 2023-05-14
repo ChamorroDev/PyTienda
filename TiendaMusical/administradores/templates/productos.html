@@ -16,10 +16,16 @@ Productos
 {% block contenido %}
 <div class="container">
     <div class="row">
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-success crearbtn my-2">
-                <a href="{% url 'Crearproducto' %}" class="nav-link f-30">Crear Disco</a>
-            </button>
+        <div class="d-flex  justify-content-between h-300p my-3  ">
+            <form method="GET" action="{% url 'buscar_discos' %}">
+                <div class="input-group mb-3 mx-5 ">
+                  <input type="text" class="form-control" name="query" placeholder="Buscar nombre discos">
+                  <button class="btn btn-primary" type="submit">Buscar</button>
+                </div>
+              </form>
+            <div class="mx-5">
+                <a href="{% url 'Crearproducto' %}" class="nav-link f-30 ov-btn-slide-left mx-5 ">Crear Disco</a>
+            </div> 
         </div>
 
         <table class="table table-responsive">
