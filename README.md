@@ -1,1 +1,1 @@
-This project is a work in progress.
+Proyecto para una tienda de productos junto pequeño panel de admin
