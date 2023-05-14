@@ -3,8 +3,10 @@
    
     <div class="row">
         <h1 class="text-center">Megas Ofertas </h1>
+
     {% for disco in discos %}
         {% if disco.oferta  %}
+        
         <div class="col-md-4">
             <div class="card bg-secondary" style="width: 100%; margin: 5px 5px; height:300px;">
                 <div class="card-body" style="text-align: center;">
@@ -14,9 +16,11 @@
                     {% endif %}
                     <p class="card-text">$&nbsp;{{disco.precio}}</p>
                 </div>
+            <!--
                 <div class="card-footer text-center">
                     <a href="#" class="btn btn-success">Agregar</a>
                 </div>
+            -->
             </div>
         </div>
 

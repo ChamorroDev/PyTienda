@@ -13,27 +13,31 @@ Tienda
 {% endblock styles %}
 
 {% block contenido %}
-<div class="container">
+<div class="container py-3 bg-grey" >
     <div style="float: right; ;">
 
 
 
-        <div class="alert alert-danger text-center " style="margin:5px; ">
-            Carrito
-            Debes Iniciar Sesion 
-        </div> 
-        <div style="float: right; ;" >
+        {% if request.user.is_authenticated %}
+
+                {% include "carro.html" %}
+        {% else %}
+
+            <div class="alert alert-danger text-center " style="margin:5px; ">Iniciar sesion para ver carro</div> 
+
+        {% endif %}
+        <div style="margin:5px;" class="text-center" >
 
             <p class="text-center formatos">Formatos</p>
             <div class="d-flex flex-column   align-items-center ">
                 {% for cat in formatos %}   
-                <button type="button" class="btn  btn-outline-dark text-center bg-white">
+                <button type="button" class="btn  text-center mb-1 ">
                     <a href="{% url 'formato' cat.id  %}" class="nav-link">{{ cat.nombre }} </a>
                     </button>
                 {% endfor %}
 
 
-                <button type="button" class="btn btn-outline-dark text-center bg-white"> 
+                <button type="button" class="btn text-center "> 
                     <a href="{% url 'Tienda'  %}" class="nav-link">Limpiar filtros</a>
                 </button>
             </div>
@@ -42,7 +46,7 @@ Tienda
     </div>
     <div class="column">
 
-    {% for disco in discos %}
+    {% for disco in entity %}
 
     <div class="col-md-9 "> 
         <div class="d-flex my-5 " style="width: 100%; margin: 5px 5px; height:160px; ">
@@ -66,8 +70,15 @@ Tienda
                             <p class="card-text">Stock:&nbsp; {{disco.stock}}</p>
                             <p class="card-text">Vendidos:&nbsp;{{disco.vendidos}}</p>
                         </div>
+
+                        
                         <div class="card-footer text-end">
-                            <a href="#" class="btn btn-success mt-2">Agregar</a>
+                            {% if disco.stock > 0  %}
+                            <a href="{% url 'carro:agregar' disco.id %}"  class="btn btn-success mt-2">Agregar</a>
+                             {% else %}   
+                             <a href="#"  class="btn btn-danger mt-2">OUT</a>
+                             {% endif %}
+
                         </div>
                     </div>
                 </div>
@@ -82,6 +93,10 @@ Tienda
 
 
     {% endfor %}
+    </div>
+
+    <div>
+        {% include 'paginator.html' %}
     </div>
 </div>
 {% endblock %}

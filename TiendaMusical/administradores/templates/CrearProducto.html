@@ -1,0 +1,165 @@
+
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block titulo %}
+Tienda 
+{% endblock titulo %}
+
+
+{% block styles %}
+
+<link href="{% static 'administradores/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock styles %}
+
+{% block contenido %}
+
+<div id="content" >
+        <h1>Añadir Disco</h1>
+        <div id="content-main">
+            <form action="/administradores/crearDisco/" method="post" enctype="multipart/form-data"  id="disco_form" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="9eUvHrVCp3bBqLOy7V7AGlZuyuJ0mg7TSrZesIZ96Bda5INx7C2w6UUgqyBBCARl">{% csrf_token %}
+                <div class="my-2">
+                    <fieldset class="module aligned  ">
+                        <div class="form-row field-nombre my-2">
+                            <div>
+                                <div class="flex-container">
+                                    <label class="required" for="id_nombre">Nombre:</label>
+                                    <input type="text" name="nombre" class="vTextField" maxlength="50" required="" id="id_nombre">
+                                    <span id="nombreError" class="error-message"></span>
+                                </div>
+                                  
+                            </div>
+                        </div>
+                        <div class="form-row field-nombreAlbum my-2">
+                            <div>
+                                <div class="flex-container"> 
+                                    <label class="required" for="id_nombreAlbum">NombreAlbum:
+                                    </label> 
+                                    <input type="text" name="nombreAlbum" class="vTextField" maxlength="50" required="" id="id_nombreAlbum">
+                                    <span id="albumError" class="error-message"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-artista my-2">
+                            <div>
+                                <div class="flex-container"> 
+                                    <label class="required" for="id_artista">Artista:
+                                    </label> 
+                                    <input type="text" name="artista" class="vTextField" maxlength="50" required="" id="id_artista"> 
+                                    <span id="artistaError" class="error-message"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-precio my-2">
+                            <div>
+                                <div class="flex-container"> 
+                                        <label class="required" for="id_precio">Precio:</label>
+                                        <input type="text" name="precio" class="vIntegerField" required id="id_precio">
+                                        <span id="precioError" class="error-message"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-vendidos my-2">
+                            <div>
+                                <div class="flex-container"> 
+                                    <label class="required" for="id_vendidos">Vendidos:</label> 
+                                    <input type="text" name="vendidos" value="0" class="vIntegerField" required="" id="id_vendidos"> 
+                                    <span id="vendidosError" class="error-message"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-stock my-2">
+                            <div>
+                                <div class="flex-container"> 
+                                    <label class="required" for="id_stock">Stock:</label> 
+                                    <input type="text" name="stock" value="1" class="vIntegerField" required="" id="id_stock"> 
+                                    <span id="stockError" class="error-message"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-annopublicacion my-2">
+                            <div class="row form-group">
+                                <div class="d-flex col-sm-4 h-75  align-items-end">
+                                    <label class="mr-2">Año Publicacion:&nbsp;&nbsp;</label>
+                                    <input name="annopublicacion" type="date" name="txtapa" id="id_annopublicacion"  class=" form-control form-control-lg" />
+                                    <a href="#" onclick="setTodayDate();">&nbsp;&nbsp;Hoy&nbsp;&nbsp;</a>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-imagen my-2">
+                            <div>
+                                <div class="flex-container"> <label for="id_imagen">Imagen:</label> <input type="file" name="imagen" accept="image/*" id="id_imagen"> </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-formatos my-2">
+                            <div>
+                                <div class="flex-container"> <label class="required" for="id_formatos">Formatos:</label>
+                                    <div class="related-widget-wrapper" data-model-ref="FormatoDisco"> <select name="formatos" required="" id="id_formatos">
+                                                        <option value="0" selected="">---------</option>
+                                                        
+                                                        <option value="1">Cassette</option>
+                                                        
+                                                        <option value="2">CD</option>
+                                                        
+                                                        <option value="3">Vinillos usados</option>
+                                                        
+                                                        <option value="4">Vinillos</option>
+                                                        
+                                                        </select>
+                                                        <span id="formatoError" class="error-message"></span>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-oferta my-2">
+                            <div>
+                                <div class="flex-container checkbox-row"> 
+                                    <input type="checkbox" name="oferta" id="id_oferta" checked="">
+                                    <label class="vCheckboxLabel" for="id_oferta">Oferta</label>
+                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-created my-2">
+                            <div>
+                                <div class="flex-container"> <label>Created:</label>
+                                    <div class="readonly">-</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row field-updated my-2">
+                            <div>
+                                <div class="flex-container"> <label>Updated:</label>
+                                    <div class="readonly">-</div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="submit-row my-2"> 
+                        <a href="{% url 'productosAdmin' %}" class="btn btn-danger">Cancelar</a>
+                        <button  type="submit" value="Guardar" class="default btn btn-success" >Guardar</button>
+                        
+                    </div>
+                  
+                </div>
+            </form>
+        </div>
+     </div>
+
+
+{% endblock %}
+{% block js %}
+
+
+
+<script src="{% static 'administradores/js/main.js' %}" ></script>
+
+
+
+{% endblock js %}

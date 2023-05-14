@@ -1,0 +1,301 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block titulo %}
+Productos
+{% endblock titulo %}
+
+{% block styles %}
+
+<link href="{% static 'administradores/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock styles %}
+
+{% block contenido %}
+
+
+<div id="content-main " class="my-3">
+    <form action="/administradores/editar_producto/{{  disco.id }}/"  enctype="multipart/form-data" method="POST" id="disco_form" novalidate=""><input type="hidden"
+            name="csrfmiddlewaretoken" value="M0OwozZdXWdyamLniCwQnCguKZL08TkuaDvulrSQyWGsfe91DnID8pMlIGFUCdlF">
+            {% csrf_token %}
+        <div>
+            <fieldset class="module aligned ">
+                <div class="form-row field-nombre mt-3">
+                    <div>
+                        <div class="flex-container">
+                            <label class="required" for="id_nombre">Nombre:</label>
+                            <input type="text" name="nombre" value="{{ disco.nombre }}" class="vTextField"
+                                maxlength="50" required="" id="id_nombre">
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-row field-nombreAlbum my-2">
+
+
+                    <div>
+
+                        <div class="flex-container">
+
+                            <label class="required" for="id_nombreAlbum">NombreAlbum:</label>
+
+                            <input type="text" name="nombreAlbum" value="{{ disco.nombreAlbum }}" class="vTextField"
+                                maxlength="50" required="" id="id_nombreAlbum">
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-row field-artista my-2">
+
+
+                    <div>
+
+                        <div class="flex-container">
+
+                            <label class="required" for="id_artista">Artista:</label>
+
+                            <input type="text" name="artista" value="{{ disco.artista }}" class="vTextField"
+                                maxlength="50" required="" id="id_artista">
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-row field-precio my-2">
+
+
+                    <div>
+
+                        <div class="flex-container">
+
+                            <label class="required" for="id_precio">Precio:</label>
+
+                            <input type="number" name="precio" value="{{ disco.precio }}" class="vIntegerField"
+                                required="" id="id_precio">
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-row field-vendidos my-2">
+
+
+                    <div>
+
+                        <div class="flex-container">
+
+                            <label class="required" for="id_vendidos">Vendidos:</label>
+
+                            <input type="number" name="vendidos" value="{{ disco.vendidos }}" class="vIntegerField"
+                                required="" id="id_vendidos">
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-row field-stock my-2">
+
+
+                    <div>
+
+                        <div class="flex-container">
+
+                            <label class="required" for="id_stock">Stock:</label>
+
+                            <input type="number" name="stock" value="{{ disco.stock }}" class="vIntegerField"
+                                required="" id="id_stock">
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-row field-annopublicacion my-2">
+                        <div class="row form-group">
+                            <div class="d-flex col-sm-4 h-75  align-items-end">
+                                <label class="mr-2">Año Publicacion:&nbsp;&nbsp;</label>
+                                <input name="annopublicacion" type="date" name="txtapa" id="id_annopublicacion" value="{{ disco.annopublicacion|date:'Y-m-d' }}" class=" form-control form-control-lg" />
+                                <a href="#"onclick="setTodayDate();">&nbsp;&nbsp;Hoy&nbsp;&nbsp;</a>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row field-imagen my-2">
+
+
+                    <div>
+
+                        <div class="flex-container">
+
+                            <label for="id_imagen">Imagen:</label>
+
+                            <p class="file-upload">Actualmente: <a href="/media/1">1</a>
+                                <span class="clearable-file-input">
+                                    <input type="checkbox" name="imagen-clear" id="imagen-clear_id">
+                                    <label for="imagen-clear_id">Limpiar</label></span><br>
+                                Modificar:
+                                <input type="file" name="imagen" accept="image/*" id="id_imagen">
+                            </p>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-row field-formatos my-2">
+
+
+                    <div>
+
+                        <div class="flex-container">
+
+                            <label class="required" for="id_formatos">Formatos:</label>
+
+                            <div class="related-widget-wrapper" data-model-ref="FormatoDisco">
+                                <select name="formatos" required="" id="id_formatos">
+                                    <option value="">---------</option>
+                                    {% if disco.formatos_id == 1 %}
+                                    <option value="1" selected="">CD</option>
+                                    <option value="2">Cassette</option>
+                                    <option value="3">Vinillos</option>
+                                    <option value="4">Vinillos usados</option>
+
+                                    {% endif %}
+                                    {% if disco.formatos_id == 2 %}
+                                    <option value="1">CD</option>
+                                    <option value="2" selected="">Cassette</option>
+                                    <option value="3">Vinillos</option>
+                                    <option value="4">Vinillos usados</option>
+
+                                    {% endif %}
+                                    {% if disco.formatos_id == 3 %}
+                                    <option value="1">CD</option>
+                                    <option value="2">Cassette</option>
+                                    <option value="3" selected="">Vinillos</option>
+                                    <option value="4">Vinillos usados</option>
+                                    {% endif %}
+                                    {% if disco.formatos_id == 4 %}
+                                    <option value="1">CD</option>
+                                    <option value="2">Cassette</option>
+                                    <option value="3">Vinillos</option>
+                                    <option value="4" selected="">Vinillos usados</option>
+                                    {% endif %}
+
+                                </select>
+
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-row field-oferta my-2">
+
+                    <div>
+                        <div class="flex-container checkbox-row">
+                            {% if disco.oferta %}
+                            <input type="checkbox" name="oferta" id="id_oferta" checked>
+                            <label class="vCheckboxLabel" for="id_oferta">Oferta</label>
+                            {% else %}
+                            <input type="checkbox" name="oferta" id="id_oferta">
+                            <label class="vCheckboxLabel" for="id_oferta">Oferta</label>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-row field-created my-2">
+
+
+                    <div>
+
+                        <div class="flex-container">
+
+                            <label>Created:</label>
+
+                            <div class="readonly">{{ disco.created|date:"Y-m-d" }}</div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="form-row field-updated my-2">
+                    <div>
+                        <div class="flex-container">
+
+                            <label>Updated:</label>
+
+                            <div class="readonly">{{ disco.updated|date:"Y-m-d" }}</div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </fieldset>
+            <div class="submit-row">
+
+             
+
+                <a href="{% url 'productosAdmin' %}" class="btn btn-danger">Cancelar</a>
+                <input type="submit" value="Guardar" class="default btn btn-success" name="_save">
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+
+<script src="{% static 'administradores/js/main.js' %}" ></script>
+
+
+
+
+{% endblock js %}

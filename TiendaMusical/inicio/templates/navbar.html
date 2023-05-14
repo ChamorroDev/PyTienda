@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark " aria-label="Eighth navbar example">
     <div class="container">
-      <a class="navbar-brand" href="#">MemoriesDistro</a>
+      <a class="navbar-brand" href="{% url 'Home' %}">MemoriesDistro</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,8 +28,33 @@
         </li>
         
     </ul>
-    <a class="nav-link text-white " href="{% url 'Registro' %}">&nbsp; Crear cuenta</a>
-    <a class="nav-link text-white " href="{% url 'Login' %}">&nbsp; Iniciar sesión</a>
+
+    {% if request.user.is_authenticated %}
+    <div class="dropdown">
+      <button class="btn btn-secondary bg-dark text-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        
+        Bienvenido {{ user.username }}
+      </button>
+      <ul class="dropdown-menu ">
+        {% for grupo in request.user.groups.all %}
+          {% if grupo.name == 'admins' %}
+          <li class=""><a class="dropdown-item text-dark" href="{% url 'productosAdmin' %}">Lista Productos</a></li>
+          <li class=""><a class="dropdown-item text-dark" href="{% url 'ListaUsuarios' %}">Lista Usuarios</a></li>
+
+          {% endif%}
+
+        {% endfor %}
+      
+        <li class=""><a class="dropdown-item" href="{% url 'cerrar_sesion' %}">Cerrar Sesion</a></li>
+        
+      </ul>
+    </div>
+    
+    {% else %}
+    <a class="nav-link text-white " href="{% url 'Registro' %}">&nbsp; Crear Cuenta</a>
+    
+    <a class="nav-link text-white " href="{% url 'Login' %}">&nbsp; Iniciar Sesión</a>
+    {% endif %}
 
            
         </div>

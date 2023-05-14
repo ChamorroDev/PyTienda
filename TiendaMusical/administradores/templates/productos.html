@@ -1,0 +1,90 @@
+
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block titulo %}
+Productos 
+{% endblock titulo %}
+
+{% block styles %}
+ 
+<link href="{% static 'administradores/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock styles %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-success crearbtn my-2">
+                <a href="{% url 'Crearproducto' %}" class="nav-link f-30">Crear Disco</a>
+            </button>
+        </div>
+
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre de disco</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                    <th>Oferta</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for disco in discos %}
+                <tr>
+                    <td>{{ disco.id }}</td>
+                    <td>{{ disco.nombre }}</td>
+                    <td>{{ disco.precio }}</td>
+                    {% if disco.imagen %}
+                    <td>Si</td>
+                    {% else %}
+                    <td>No</td>
+                    {% endif %}
+                    {% if disco.oferta %}
+                    <td>Si</td>
+                    {% else %}
+                    <td>No</td>
+                    {% endif %}
+                    <td>
+                        <a class="text-decoration-none" href="{% url 'editar_producto' disco.id  %}">
+                            <img src="{% static 'tienda/img/editimg.png' %}" width="40px" height="40px" alt="">
+                        </a>
+                      
+                        <a type="button" class="text-decoration-none delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal{{ disco.id }}{{ disco.nombre }}">
+                            <img src="{% static 'tienda/img/deleteimg.png' %}" width="40px" height="40px" alt="">
+                        </a>
+                        <div class="modal fade" id="exampleModal{{ disco.id }}{{ disco.nombre }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminar Producto</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                Se seguro de borrar {{ disco.nombre }}
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <a href="{% url 'eliminarProducto' disco.id %}" class="btn btn-danger">Eliminar</a>
+                                </div>
+                            </div>
+                            </div>
+                        </div>        
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock js %}

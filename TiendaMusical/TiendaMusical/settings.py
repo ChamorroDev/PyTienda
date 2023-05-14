@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'inicio',
     'tienda',
     'autentificacion',
+    'carro', 
+    'pedidos',
+    'administradores',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +72,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'carro.context_processor.importe_total_carro'
+
             ],
         },
     },
@@ -79,7 +84,7 @@ WSGI_APPLICATION = 'TiendaMusical.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -99,6 +104,7 @@ DATABASES = {
         "PORT": "1521",
     }
 }
+"""
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
