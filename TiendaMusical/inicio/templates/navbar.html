@@ -38,8 +38,10 @@
       <ul class="dropdown-menu ">
         {% for grupo in request.user.groups.all %}
           {% if grupo.name == 'admins' %}
+          
           <li class=""><a class="dropdown-item text-dark" href="{% url 'productosAdmin' %}">Lista Productos</a></li>
           <li class=""><a class="dropdown-item text-dark" href="{% url 'ListaUsuarios' %}">Lista Usuarios</a></li>
+          <li class=""><a class="dropdown-item text-dark" href="{% url 'listaPedidos' %}">Lista Pedidos</a></li>
 
           {% endif%}
 

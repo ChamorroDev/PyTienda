@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from tienda.models import Disco,FormatoDisco
 from django.contrib.auth.models import User 
 from datetime import datetime
+from pedidos.models import *
 # Create your views here.
 
 
@@ -127,4 +128,26 @@ def editarUsuario(request,userss):
             elif request.method == 'GET':
                 user = User.objects.filter(id=userss).values().first()
                 return render(request, 'editarUsuario.html', {"user": user})         
+    return redirect('Home')
+
+
+#PEDIDOS 
+@login_required(login_url='Home')
+def listaPedidos(request):
+    for grupo in request.user.groups.all():
+        if grupo.name == 'admins':
+            lpedido=Pedido.objects.all()
+            return render(request,'listaPedidos.html',{"Pedido":lpedido})
+
+    return redirect('Home')
+
+@login_required(login_url='Home')
+def listaLineaPedidos(request,linea_pedido):
+    for grupo in request.user.groups.all():
+        if grupo.name == 'admins':
+          
+            LineaPedidos=LineaPedido.objects.filter(pedido_id=int(linea_pedido))
+            
+            return render(request,'LineaPedidos.html',{"LPedido":LineaPedidos,"linea_pedido":int(linea_pedido)})
+
     return redirect('Home')

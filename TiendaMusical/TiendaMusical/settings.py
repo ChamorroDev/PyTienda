@@ -153,3 +153,13 @@ MEDIA_ROOT = join(BASE_DIR , 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+WEBPAY_CONFIGURATION = {
+    'MODO': 'INTEGRACION',  # Puedes usar 'INTEGRACION' para pruebas o 'PRODUCCION' en producción.
+    'LLAVE_SECRETA': '579B532A7440BB0C9079DED94D31EA1615BACEB56610332264630D42D0A36B1C',
+    'CODIGO_COMERCIO': '597055555532',
+    'URL_RETORNO': 'http://localhost:8000/pedidos/retorno_pago/',
+    'URL_FINAL': 'http://localhost:8000/',
+}

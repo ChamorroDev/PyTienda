@@ -1,0 +1,50 @@
+
+
+
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block titulo %}
+Pago 
+{% endblock titulo %}
+
+{% block styles %}
+ 
+<link href="{% static 'administradores/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock styles %}
+
+{% block contenido %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb"> 
+    <li class="breadcrumb-item"><a href="#">Ejemplo Webpay Plus - Crear Transaccion</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Step: <strong>Create Transaction</strong></li>
+    </ol>
+    </nav>
+
+
+    <div class="alert alert-warning" role="alert">
+    <h3>request</h3>
+        {% for k, v in request.items %}
+            {{ k }} = {{ v }},
+        {% endfor %}
+</div>
+    <div class="alert alert-primary" role="alert">
+    <h3>result</h3>
+    {{ response }}
+</div>
+<br>
+<form action="{{ response.url }}" method="POST">
+<input type="hidden" name="token_ws" value="{{ response.token }}">
+<input type="submit" value="Ejecutar Pago con Webpay">
+</form>
+<br>
+
+<a href="/">&laquo; volver a index</a>
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock js %}

@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block titulo %}
+Pedido  {{ linea_pedido }}
+{% endblock titulo %}
+
+{% block styles %}
+ 
+<link href="{% static 'administradores/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock styles %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        
+        <h1>N° DE PEDIDO {{ linea_pedido }}</h1>
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Producto</th>
+                    <th>cantidad</th>
+                    <th>created_at</th>
+                </tr>
+            </thead>
+
+            {% for pedido in LPedido %}
+            <tbody>
+                <tr>    
+                    <td>{{ pedido.id }}</td>
+                    <td>{{ pedido.user }}</td>
+                    <td>{{ pedido.producto }}</td>
+                    <td>{{ pedido.cantidad }}</td>
+                    <td>{{ pedido.created_at }}</td>
+                    
+                   
+                </tr>
+            </tbody>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock js %}
