@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'pedidos',
     'administradores',
     'fontawesomefree',
+    "perfil",
 ]
 
 MIDDLEWARE = [

@@ -20,8 +20,6 @@ def iniciar_pago(request,response):
 
 
 def retorno_pago(request):
-    print(request)
-
     token = request.GET.get('token_ws')  # Obtén el token de la transacción desde la URL
     print("commit for token_ws: {}".format(token))
     # Obtén los detalles de la transacción desde Webpay
@@ -36,7 +34,6 @@ def retorno_pago(request):
              v_stock = Disco.objects.filter(id=ped.producto_id).values('stock').first()
              v_stock = int(v_stock['stock'])
              Disco.objects.filter(id=ped.producto_id).update(vendidos=ped.cantidad+v_vendidos, stock=v_stock-ped.cantidad)
-        LineaPedido.objects.bulk_create(pedido)
         messages.success(request,"El pago confirmado correctamente")
 
         # Transacción exitosa, actualiza el estado del pedido en tu base de datos
@@ -50,10 +47,16 @@ def retorno_pago(request):
 @login_required(login_url="Home")
 def procesar_pedido(request):
     pedido=Pedido.objects.create(user=request.user)
+    carro=Carro(request)
+    lineas_pedido=list()
     total=0
-    for key,value in request.session["carro"].items():
+    for key,value in carro.carro.items():
             total=total+(int(value["precio"])) 
+            lineas_pedido.append(LineaPedido(producto_id=key,cantidad=value["cantidad"],user=request.user,pedido=pedido))
 
+
+    LineaPedido.objects.bulk_create(lineas_pedido)
+    carro.limpiar_carro()
     orden_compra = str(pedido.id) 
     return_url= 'http://localhost:8000/pedidos/retorno_pago/'
     s_id=str(random.randrange(1000000, 99999999))
@@ -63,8 +66,3 @@ def procesar_pedido(request):
     return render(request,"create.html", {"response":response})
 
 
-"""
-response: {'vci': 'TSY', 'amount': 1, 'status': 'AUTHORIZED', 'buy_order': '64333337',
-            'session_id': '39998857', 'card_detail': {'card_number': '6623'},
-              'accounting_date': '0516', 'transaction_date': '2023-05-16T15:27:57.247Z', 'authorization_code': '1213',
-            'payment_type_code': 'VN', 'response_code': 0, 'installments_number': 0}"""

@@ -8,13 +8,13 @@ from pedidos.models import *
 
 
 ## PRODUCTOS
-
+@login_required(login_url='Home')
 def buscar_discos(request):
     query = request.GET.get('query')
     discos = Disco.objects.filter(nombre__icontains=query)
     return render(request, 'productos.html', {'discos': discos})
 
-@login_required(redirect_field_name='login_required',login_url='Home')
+@login_required(login_url='Home')
 def productosAdmin(request):
     for grupo in request.user.groups.all():
         if grupo.name == 'admins':
@@ -88,7 +88,7 @@ def CrearDisco(request):
             noferta = request.POST.get('oferta') 
             noferta = bool(noferta) 
             formatin=FormatoDisco.objects.get(id=int(nformato))
-            dis= Disco(oferta=noferta,nombre=nnombre,nombreAlbum=nalbum,artista=nartista,formatos=formatin,precio=int(nprecio),vendidos=0,stock=int(nstock),annopublicacion='2023-05-15',imagen='null')
+            dis= Disco(oferta=noferta,nombre=nnombre,nombreAlbum=nalbum,artista=nartista,formatos=formatin,precio=int(nprecio),vendidos=0,stock=int(nstock),annopublicacion=nanno,imagen='null')
             dis.save()
             return redirect('productosAdmin')
     return redirect('Home')
@@ -108,7 +108,7 @@ def ListaUsuarios (request):
 @login_required(login_url='Home')
 def eliminarUsuario(request,disco_id):
 
-    for grupo in request.user.groups.all():
+    for grupo in request.user.groups.all(): 
         if grupo.name == 'admins':
             disc=User.objects.get(id=int(disco_id))
             disc.delete()

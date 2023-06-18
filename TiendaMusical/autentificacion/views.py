@@ -2,30 +2,39 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,logout,authenticate
-
+from .forms import  FormularioRegistro
 from django.contrib.auth.models import Group
 from .forms import *
 from django.contrib.auth.decorators import login_required
+
+
+from .models import Direccion
 # Create your views here.
 
 def registro(request):
     if request.method =='GET': 
-        form = UserCreationCustom()  
-        context = {  'form':form  }  
-
-        return render(request,"registro.html",context)
+        contexto = {
+            'formulario': FormularioRegistro()
+        }  
+        return render(request,"registro.html",contexto)
     if request.method =='POST': 
-        form = UserCreationCustom(request.POST) 
-        if form.is_valid():
-            print("valid")
-            form.save()  
-            user=form.save()  
+        datos_formulario = FormularioRegistro(data=request.POST)
+        es_valido = datos_formulario.is_valid()
+        if es_valido:
+            datos_formulario.save()  
+            user=datos_formulario.save()  
             my_group = Group.objects.get(name='normal')
             my_group.user_set.add(user) 
             messages.add_message(request=request,level=messages.SUCCESS,message="Registrado Correctamente")
             return redirect ('Home')
-        messages.add_message(request=request,level=messages.WARNING,message="Registro invalido")    
-    return redirect ('')  
+         
+        contexto = {
+            'formulario': datos_formulario
+        }
+        return render(request, 'registro.html', contexto)  
+
+    
+    return redirect ('Registro')  
 
 
 

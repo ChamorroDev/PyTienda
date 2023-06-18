@@ -15,56 +15,6 @@ Registrarse
 
 {% block contenido %}
 
-<section class=" my-5">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-6 text-black">
-  
-          
-  
-          <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-  
-            <form action="/registro/" method="POST" style="width: 23rem;">
-              {% csrf_token %}
-              <h3 class="fw-normal mb-3 pb-3 letranegra" style="letter-spacing: 1px;">Registrarse</h3>
-
-              <div class="form-outline mb-4">
-                <input type="username" id="form2Example18" class="form-control form-control-lg" />
-                <label class="form-label" for="form2Example18">Nombre de usuario</label>
-              </div>
-
-              <div class="form-outline mb-4">
-                <input type="email" id="form2Example18" class="form-control form-control-lg" />
-                <label class="form-label" for="form2Example18">Email address</label>
-              </div>
-
-              
-  
-              <div class="form-outline mb-4">
-                <input type="password" id="form2Example28" class="form-control form-control-lg" />
-                <label class="form-label" for="form2Example28">Password</label>
-              </div>
-  
-              <div class="pt-1 mb-4">
-                <button class="btn btn-info btn-lg btn-block" type="submit">Registrarse</button>
-              </div>
-  
-            </form>
-             
-              <p>Ya tienes una cuenta? <a href="{% url 'Login' %}" class="link-info">Inicia sesion aqui</a></p>
-  
-  
-          </div>
-  
-        </div>
-        <div class="col-sm-6 px-0 d-none d-sm-block ">
-          <img src="{% static 'auth/img/logo.png' %}"
-            alt="Register image" class="w-100 h-50 rounded-circle mt-5">
-        </div>
-      </div>
-    </div>
-  </section>
-
   {% if messages %}  
   <ul>   
       {% for message in messages %}  
@@ -72,17 +22,73 @@ Registrarse
           {% endfor %}  
   </ul>   
 {% endif %}  
-  <form method="POST" action="/registro/">  
-    {% csrf_token %}  
-    <table>  
-       {{ form.as_table }}  
-        <tr>  
-           <td></td>  
-           <td><input type="submit" name="submit" value="Register" /></td>  
-       </tr>  
-    </table>  
-</form>  
-</div>  
+<main class="container">
+  <form method="POST">
+      <section class="row">
+          <h1>Bienvenido</h1>
+      </section>
+      <section class="row">
+          <fieldset class="col-12">
+              <label for="">{{ formulario.username.label }}</label>
+              {{ formulario.username }}
+              <p class="invalid-feedback">
+                  {{ formulario.username.error }}
+              </p>
+          </fieldset>
+      </section>
+      <section class="row">
+          <fieldset class="col-6">
+              <label for="">{{ formulario.first_name.label }}</label>
+              {{ formulario.first_name }}
+              <p class="invalid-feedback">
+                  {{ formulario.first_name.error }}
+              </p>
+          </fieldset>
+          <fieldset class="col-6">
+              <label for="">{{ formulario.last_name.label }}</label>
+              {{ formulario.last_name }}
+              <p class="invalid-feedback">
+                  {{ formulario.last_name.error }}
+              </p>
+          </fieldset>
+      </section>
+      <section class="row">
+          <fieldset class="col-12">
+              <label for="">{{ formulario.email.label }}</label>
+              {{ formulario.email }}
+              <p class="invalid-feedback">
+                  {{ formulario.email.error }}
+              </p>
+          </fieldset>
+      </section>
+      <section class="row">
+          <fieldset class="col-6">
+              <label for="">{{ formulario.password1.label }}</label>
+              {{ formulario.password1 }}
+              {{ formulario.password1.help_text }}
+              <p class="invalid-feedback">
+                  {{ formulario.password1.error }}
+              </p>
+          </fieldset>
+          <fieldset class="col-6">
+              <label for="">{{ formulario.password2.label }}</label>
+              {{ formulario.password2 }}
+              {{ formulario.password2.help_text }}
+              <p class="invalid-feedback">
+                  {{ formulario.password2.error }}
+              </p>
+          </fieldset>
+      </section>
+      {% csrf_token %}
+      <section class="row">
+          <fieldset class="col">
+              <button class="btn btn-success" role="submit" type="submit">Registrar</button>
+          </fieldset>
+      </section>
+  </form>
+  <p>Ya tienes una cuenta? <a href="{% url 'Login' %}" class="link-info">Inicia sesion aqui</a></p>
+
+</main>
 
 {% endblock contenido %}
 
